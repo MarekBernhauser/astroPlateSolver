@@ -1,9 +1,16 @@
 #!/bin/bash
 
+if (( $# == 2 ))
+then
+coordinatesFile="$2"
+RA=$(sed -n '1,1p' $coordinatesFile)
+Dec=$(sed -n '2,2p' $coordinatesFile)
+else
 echo "Target RA, hh mm ss (eg. 13 40 32)"
 read RA
 echo "Target Dec, ° ' '' (eg -5 12 34)"
 read Dec
+fi
 
 ra1=$(echo $RA | cut -f1 -d' ')
 ra2=$(echo $RA | cut -f2 -d' ')
@@ -47,7 +54,7 @@ Dec=${line:$i:7}
 echo "current RA is" $RA
 echo "current dec is" $Dec
 echo ""
-echo "$targetRA $RA" | awk '{print "RA difference:" $1-$2 degrees}'
-echo "$Dec $targetDec" | awk '{print "Dec difference:" $1-$2 degrees}'
+echo "$targetRA $RA" | awk '{print "RA difference: " $1-$2 " degrees"}'
+echo "$Dec $targetDec" | awk '{print "Dec difference: " $1-$2 " degrees"}'
 
 rm -r solve
