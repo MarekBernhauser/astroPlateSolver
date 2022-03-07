@@ -2,3 +2,4 @@
 
 sudo apt-get install astrometry.net -y
 sudo apt-get install astrometry-data-tycho2 -y
+sudo apt-get install bc -y
